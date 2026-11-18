@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f6f0e6">
+<title>Market Glass | Sign in</title>
+<style>
+:root{color-scheme:light;--cream:#f6f0e6;--ivory:#fffcf6;--sand:#d9c5a3;--teal:#7fa9a6;--ocean:#244a50;--ink:#243235;--gray:#77786f;--green:#267353;--coral:#b74643}
+*{box-sizing:border-box}
+body{min-height:100vh;margin:0;padding:24px;background:radial-gradient(ellipse at 9% 9%,#fffdf3 0,transparent 35%),radial-gradient(ellipse at 88% 83%,#8cae9c66,transparent 32%),linear-gradient(135deg,#f6f0e6,#e9e0d0 50%,#dae4dc);color:var(--ink);font:14px/1.5 Inter,Manrope,system-ui,-apple-system,"Segoe UI",sans-serif;display:grid;place-items:center}
+button,input{font:inherit}
+.shell{width:min(1050px,100%);min-height:620px;display:grid;grid-template-columns:1.04fr .96fr;overflow:hidden;border:1px solid #fff9;border-radius:22px;background:#fffcf6d9;box-shadow:0 28px 80px #324b4030,0 2px 6px #324b4010;backdrop-filter:blur(20px)}
+.story{position:relative;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;padding:38px;background:linear-gradient(145deg,#244a50ed,#315e5cdb 56%,#314a43e8);color:#fffaf0}
+.story::before,.story::after{position:absolute;content:"";pointer-events:none}
+.story::before{inset:0;background:radial-gradient(ellipse at 83% 18%,#dfc99e52,transparent 32%),radial-gradient(ellipse at 16% 83%,#85aaa566,transparent 35%)}
+.story::after{right:-22%;bottom:16%;width:112%;height:175px;border:1px solid #fff4;border-radius:50%;transform:rotate(-14deg);box-shadow:0 -17px 0 -16px #fff5,0 -36px 0 -35px #fff4,0 -57px 0 -56px #fff3}
+.brand,.story-copy,.story-foot{position:relative;z-index:1}
+.brand{display:flex;align-items:center;gap:11px;font-size:13px;font-weight:650;letter-spacing:.04em}
+.brand-mark{width:34px;height:34px;border:1px solid #fff7;border-radius:10px;background:#ffffff1a;display:grid;place-items:center;font-family:Georgia,serif;font-size:21px}
+.brand span:last-child{display:grid}.brand small{font-size:9px;font-weight:500;letter-spacing:.17em;text-transform:uppercase;opacity:.73}
+.story-copy{max-width:400px;margin:58px 0}
+.eyebrow{color:#e4cc9e;font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase}
+h1{max-width:390px;margin:16px 0;font:500 clamp(38px,5vw,56px)/1.04 Georgia,"Times New Roman",serif;letter-spacing:-.045em}
+h1 em{color:#e5cba0;font-weight:400}
+.story-copy p{max-width:355px;color:#e5e5d9;font-size:14px;line-height:1.8}
+.story-foot{font-size:10px;letter-spacing:.03em;color:#d0d6cb}
+.form-side{display:grid;place-items:center;padding:46px}
+.form-wrap{width:min(350px,100%)}
+.form-wrap h2{margin:0;font:500 32px/1.2 Georgia,"Times New Roman",serif;letter-spacing:-.025em}
+.form-subtitle{margin:9px 0 25px;color:var(--gray);font-size:12px}
+.mode-switch{display:flex;gap:5px;margin:0 0 22px;padding:4px;border:1px solid #e8e2d7;border-radius:9px;background:#f5f1e9}
+.mode-switch button{flex:1;padding:8px;border:0;border-radius:6px;background:transparent;color:var(--gray);font-size:12px;cursor:pointer}
+.mode-switch button[aria-selected="true"]{background:var(--ivory);color:var(--ocean);box-shadow:0 1px 5px #253c3815}
+.field{display:block;margin:0 0 15px}
+.field span{display:block;margin:0 0 6px;color:#465551;font-size:11px;font-weight:600}
+.field input{width:100%;height:43px;padding:0 12px;border:1px solid #dcded5;border-radius:7px;background:#fffefa;color:var(--ink);outline:none}
+.field input:focus{border-color:var(--teal);box-shadow:0 0 0 3px #7fa9a626}
+.password-wrap{position:relative}.password-wrap input{padding-right:60px}
+.reveal{position:absolute;top:5px;right:5px;height:33px;padding:0 9px;border:0;border-radius:5px;background:transparent;color:var(--ocean);font-size:10px;cursor:pointer}
+.form-options{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:2px 0 18px;font-size:10px;color:var(--gray)}
+.remember{display:inline-flex;align-items:center;gap:6px}.remember input{accent-color:var(--ocean)}
+.text-button{padding:0;border:0;background:none;color:var(--ocean);font-size:10px;text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.submit{width:100%;height:44px;border:0;border-radius:7px;background:var(--ocean);color:#fffaf0;font-size:12px;font-weight:650;cursor:pointer;transition:background .15s,transform .15s}
+.submit:hover{background:#1b3c41}.submit:active{transform:translateY(1px)}.submit:disabled{opacity:.68;cursor:wait}
+.message{min-height:18px;margin:10px 0 0;color:var(--coral);font-size:11px}.message.success{color:var(--green)}
+.legal{margin-top:19px;color:#888a80;font-size:9px;line-height:1.7}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@media(max-width:720px){body{padding:12px}.shell{min-height:0;grid-template-columns:1fr}.story{min-height:280px;padding:25px}.story-copy{margin:35px 0 20px}.story-copy p{max-width:460px}h1{font-size:42px}.story-foot{display:none}.form-side{padding:34px 25px}.form-wrap h2{font-size:28px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important}}
+</style>
+</head>
+<body>
+<main class="shell">
+  <section class="story" aria-labelledby="brandTitle">
+    <div class="brand"><span class="brand-mark" aria-hidden="true">M</span><span id="brandTitle">MARKET GLASS<small>Independent market research</small></span></div>
+    <div class="story-copy"><div class="eyebrow">A clearer view of the market</div><h1>See the market.<br><em>Beyond the numbers.</em></h1><p>Explore a decade of end-of-day market history, uncover trends, and follow the instruments that matter to your research.</p></div>
+    <div class="story-foot">Historical data for research and education · Not investment advice</div>
+  </section>
+  <section class="form-side" aria-labelledby="formTitle">
+    <div class="form-wrap">
+      <h2 id="formTitle">Welcome back</h2><p class="form-subtitle" id="formSubtitle">Sign in to your private research workspace.</p>
+      <div class="mode-switch" role="tablist" aria-label="Account action">
+        <button id="loginTab" role="tab" aria-selected="true" type="button">Sign in</button>
+        <button id="registerTab" role="tab" aria-selected="false" type="button">Create account</button>
+      </div>
+      <form id="authForm" novalidate>
+        <label class="field" id="nameField" hidden><span>Your name</span><input name="display_name" autocomplete="name" maxlength="80"></label>
+        <label class="field"><span>Email address</span><input name="email" type="email" autocomplete="email" maxlength="254" required></label>
+        <label class="field"><span>Password</span><span class="password-wrap"><input name="password" type="password" autocomplete="current-password" minlength="12" maxlength="128" required><button class="reveal" type="button" id="togglePassword" aria-label="Show password">Show</button></span></label>
+        <div class="form-options" id="formOptions"><span>Secure 12-hour session</span></div>
+        <button class="submit" id="submitButton" type="submit">Sign in securely</button>
+        <p class="message" id="formMessage" role="alert" aria-live="polite"></p>
+      </form>
+      <p class="legal">Accounts are stored on this server. Passwords are protected using Argon2id. Sessions use HTTP-only cookies. Password reset and email verification are unavailable until an email delivery provider is configured.</p>
+    </div>
+  </section>
+</main>
+<script>
+(() => {
+  let mode='login';
+  const form=document.getElementById('authForm');
+  const nameInput=form.elements.display_name;
+  const emailInput=form.elements.email;
+  const passwordInput=form.elements.password;
+  const message=document.getElementById('formMessage');
+  const submit=document.getElementById('submitButton');
+  const loginTab=document.getElementById('loginTab');
+  const registerTab=document.getElementById('registerTab');
+  function setMode(next){
+    mode=next;
+    const registering=mode==='register';
+    loginTab.setAttribute('aria-selected',String(!registering));
+    registerTab.setAttribute('aria-selected',String(registering));
+    document.getElementById('nameField').hidden=!registering;
+    nameInput.required=registering;
+    passwordInput.autocomplete=registering?'new-password':'current-password';
+    passwordInput.minLength=registering?12:1;
+    document.getElementById('formTitle').textContent=registering?'Create your account':'Welcome back';
+    document.getElementById('formSubtitle').textContent=registering?'Set up a private research workspace.':'Sign in to your private research workspace.';
+    document.getElementById('formOptions').hidden=registering;
+    submit.textContent=registering?'Create account securely':'Sign in securely';
+    message.textContent='';
+    message.classList.remove('success');
+  }
+  loginTab.addEventListener('click',()=>setMode('login'));
+  registerTab.addEventListener('click',()=>setMode('register'));
+  document.getElementById('togglePassword').addEventListener('click',event=>{
+    const shown=passwordInput.type==='text';
+    passwordInput.type=shown?'password':'text';
+    event.currentTarget.textContent=shown?'Show':'Hide';
+    event.currentTarget.setAttribute('aria-label',shown?'Show password':'Hide password');
+  });
+  form.addEventListener('submit',async event=>{
+    event.preventDefault();
+    message.textContent='';
+    message.classList.remove('success');
+    if(!form.reportValidity())return;
+    if(mode==='register'&&passwordInput.value.length<12){
+      message.textContent='Use at least 12 characters for your password.';
+      return;
+    }
+    submit.disabled=true;
+    submit.textContent=mode==='register'?'Creating account…':'Signing in…';
+    try{
+      const response=await fetch(mode==='register'?'/api/auth/register':'/api/auth/login',{
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        credentials:'same-origin',
+        body:JSON.stringify({
+          email:emailInput.value.trim(),
+          password:passwordInput.value,
+          ...(mode==='register'?{display_name:nameInput.value.trim()}: {})
+        })
+      });
+      const result=response.status===204?{}:await response.json();
+      if(!response.ok)throw new Error(result.detail||'Unable to sign in. Try again.');
+      message.classList.add('success');
+      message.textContent=mode==='register'?'Account created. Opening your workspace…':'Signed in. Opening your workspace…';
+      window.location.assign('/dashboard');
+    }catch(error){
+      message.textContent=error instanceof Error?error.message:'A network error occurred. Please try again.';
+    }finally{
+      submit.disabled=false;
+      submit.textContent=mode==='register'?'Create account securely':'Sign in securely';
+    }
+  });
+})();
+</script>
+</body>
+</html>
